@@ -12,7 +12,8 @@
     "tm": "truffle migrate",
     "tc": "truffle console",
     "tcom": "truffle compile",
-    "tt": "truffle test"
+    "tt": "truffle test",
+    "treset": "truffle migrate --reset"
   },
   "author": "deepak",
   "license": "ISC",
