@@ -61,6 +61,21 @@ const App = () => {
     setNewTask(event.target.value)
   }
 
+  const handleButton = () => {
+    contract.getPastEvents('TaskCreated', {
+      fromBlock: 0, // Start block number
+      toBlock: 'latest' // End block number
+    })
+    .then(function(events) {
+      // Process the retrieved events
+      console.log(events);
+    })
+    .catch(function(error) {
+      // Handle errors
+      console.error(error);
+    });
+  }
+
   return (
     <div className="App">
       <nav style={{ height: '50px', width: '100%', textAlign: 'right', background: "#ccc" }}>
@@ -68,11 +83,14 @@ const App = () => {
       </nav>
       <main>
         <form type="submit" onSubmit={handleSubmit}>
-          <input type="text" onChange={handleChange} value={newTask}/>
+          <input type="text" onChange={handleChange} value={newTask} placeholder='enter your task here'/>
         </form>
         <hr></hr>
         <h1>Display list</h1>
         {displayList()}
+        <h1>Events</h1>
+        <p>(open console to see events)</p>
+        <button onClick={handleButton}>Click to get events</button>
       </main>
     </div>
   );
